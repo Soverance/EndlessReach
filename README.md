@@ -29,12 +29,12 @@ Endless Reach contains some basic shoot 'em up logic with the addition of a few 
 
 [KEY FEATURES]
 
-10 action-packed levels set in beautiful spacescapes
-Amazing electronic soundtrack by Shiny Baubles
-High powered particle effects and visual stimuli
-Power-up chaining and limit break mode
-5 enemy types, 3 turret types, and a different boss in every stage!
-Missile targeting via head tracking!
+* 10 action-packed levels set in beautiful spacescapes
+* Amazing electronic soundtrack by Shiny Baubles
+* High powered particle effects and visual stimuli
+* Power-up chaining and limit break mode
+* 5 enemy types, 3 turret types, and a different boss in every stage!
+* Missile targeting via head tracking!
 
 [PLATFORMS]
 
