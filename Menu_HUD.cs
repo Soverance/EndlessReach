@@ -8,6 +8,9 @@ using System.Collections;
 
 public class Menu_HUD : MonoBehaviour {
 
+	private const int MinIndexSceneLevelPlayable = 1;
+	private const int MaxIndexSceneLevelPlayable = 10;
+
     public UISlider _BoostMeter;
     public UISlider _BossHealthBar;
     public UILabel _Score;
@@ -47,38 +50,10 @@ public class Menu_HUD : MonoBehaviour {
         PlayerPrefs.Save();
         StartCoroutine(FadeOut());
         yield return new WaitForSeconds(1.0f);
-        switch (Application.loadedLevel)
+
+        if (IsPlayableSceneLevel(Application.loadedLevel)) 
         {
-            case 1:
-                Application.LoadLevel(1);
-                break;
-            case 2:
-                Application.LoadLevel(2);
-                break;
-            case 3:
-                Application.LoadLevel(3);
-                break;
-            case 4:
-                Application.LoadLevel(4);
-                break;
-            case 5:
-                Application.LoadLevel(5);
-                break;
-            case 6:
-                Application.LoadLevel(6);
-                break;
-            case 7:
-                Application.LoadLevel(7);
-                break;
-            case 8:
-                Application.LoadLevel(8);
-                break;
-            case 9:
-                Application.LoadLevel(9);
-                break;
-            case 10:
-                Application.LoadLevel(10);
-                break;
+        	Application.LoadLevel(Application.loadedLevel);
         }
     }
 
@@ -105,121 +80,26 @@ public class Menu_HUD : MonoBehaviour {
         DataConnector.Connect();
     }
 
+    bool IsPlayableSceneLevel(int levelIndex)
+    {
+    	return (levelIndex >= MinIndexSceneLevelPlayable && levelIndex <= MaxIndexSceneLevelPlayable);
+    }
+
     void GetHighScore()
     {
-        switch (Application.loadedLevel)
-        {
-            case 1:
-                if (PlayerPrefs.HasKey("HS_1"))
-                {
-                    CurrentLevelHighScore = PlayerPrefs.GetInt("HS_1");  // get high score
-                    _CurrentHighScore.text = CurrentLevelHighScore.ToString();
-                }
-                else
-                {
-                    CurrentLevelHighScore = 0;
-                }
-                break;
-            case 2:
-                if (PlayerPrefs.HasKey("HS_2"))
-                {
-                    CurrentLevelHighScore = PlayerPrefs.GetInt("HS_2");  // get high score
-                    _CurrentHighScore.text = CurrentLevelHighScore.ToString();
-                }
-                else
-                {
-                    CurrentLevelHighScore = 0;
-                }
-                break;
-            case 3:
-                if (PlayerPrefs.HasKey("HS_3"))
-                {
-                    CurrentLevelHighScore = PlayerPrefs.GetInt("HS_3");  // get high score
-                    _CurrentHighScore.text = CurrentLevelHighScore.ToString();
-                }
-                else
-                {
-                    CurrentLevelHighScore = 0;
-                }
-                break;
-            case 4:
-                if (PlayerPrefs.HasKey("HS_4"))
-                {
-                    CurrentLevelHighScore = PlayerPrefs.GetInt("HS_4");  // get high score
-                    _CurrentHighScore.text = CurrentLevelHighScore.ToString();
-                }
-                else
-                {
-                    CurrentLevelHighScore = 0;
-                }
-                break;
-            case 5:
-                if (PlayerPrefs.HasKey("HS_5"))
-                {
-                    CurrentLevelHighScore = PlayerPrefs.GetInt("HS_5");  // get high score
-                    _CurrentHighScore.text = CurrentLevelHighScore.ToString();
-                }
-                else
-                {
-                    CurrentLevelHighScore = 0;
-                }
-                break;
-            case 6:
-                if (PlayerPrefs.HasKey("HS_6"))
-                {
-                    CurrentLevelHighScore = PlayerPrefs.GetInt("HS_6");  // get high score
-                    _CurrentHighScore.text = CurrentLevelHighScore.ToString();
-                }
-                else
-                {
-                    CurrentLevelHighScore = 0;
-                }
-                break;
-            case 7:
-                if (PlayerPrefs.HasKey("HS_7"))
-                {
-                    CurrentLevelHighScore = PlayerPrefs.GetInt("HS_7");  // get high score
-                    _CurrentHighScore.text = CurrentLevelHighScore.ToString();
-                }
-                else
-                {
-                    CurrentLevelHighScore = 0;
-                }
-                break;
-            case 8:
-                if (PlayerPrefs.HasKey("HS_8"))
-                {
-                    CurrentLevelHighScore = PlayerPrefs.GetInt("HS_8");  // get high score
-                    _CurrentHighScore.text = CurrentLevelHighScore.ToString();
-                }
-                else
-                {
-                    CurrentLevelHighScore = 0;
-                }
-                break;
-            case 9:
-                if (PlayerPrefs.HasKey("HS_9"))
-                {
-                    CurrentLevelHighScore = PlayerPrefs.GetInt("HS_9");  // get high score
-                    _CurrentHighScore.text = CurrentLevelHighScore.ToString();
-                }
-                else
-                {
-                    CurrentLevelHighScore = 0;
-                }
-                break;
-            case 10:
-                if (PlayerPrefs.HasKey("HS_10"))
-                {
-                    CurrentLevelHighScore = PlayerPrefs.GetInt("HS_10");  // get high score
-                    _CurrentHighScore.text = CurrentLevelHighScore.ToString();
-                }
-                else
-                {
-                    CurrentLevelHighScore = 0;
-                }
-                break;
-        }
+    	if (IsPlayableSceneLevel(Application.loadedLevel)) 
+    	{
+    		var levelKey = string.Format("HS_{0}", Application.loadedLevel);
+    		if (PlayerPrefs.HasKey(levelKey))
+    		{
+    			CurrentLevelHighScore = PlayerPrefs.GetInt(levelKey);  // get high score
+                _CurrentHighScore.text = CurrentLevelHighScore.ToString();
+    		}
+    		else
+            {
+                CurrentLevelHighScore = 0;
+            }
+    	}
     }
 
     // called to update boss health bar, passed a health percentage
