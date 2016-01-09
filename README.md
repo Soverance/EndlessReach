@@ -49,7 +49,7 @@ Complete Version History is found on soverance.com.
 
 [INSTALLATION INSTRUCTIONS]
 
-Download from Official Website: http://endlessreach.soverance.com
+Download from Official Website: http://soverance.com/endlessreach/
 
 [CONTROLS]
 
